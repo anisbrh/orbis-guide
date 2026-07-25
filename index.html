@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Orbis — Guide vidéo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --bg:#FAF9FC; --surface:#FFFFFF; --text:#1B1526; --muted:#6B6478;
+    --accent:#6D28D9; --accent-soft:#EDE7FB; --border:#E8E3F1;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --ar:"Noto Naskh Arabic","Segoe UI",Tahoma,"Geeza Pro",serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#141019; --surface:#1E1929; --text:#ECE8F6; --muted:#A79FB8;
+      --accent:#B79CFB; --accent-soft:#2A2140; --border:#332A47; }
+  }
+  :root[data-theme="light"]{ --bg:#FAF9FC; --surface:#FFFFFF; --text:#1B1526; --muted:#6B6478; --accent:#6D28D9; --accent-soft:#EDE7FB; --border:#E8E3F1; }
+  :root[data-theme="dark"]{ --bg:#141019; --surface:#1E1929; --text:#ECE8F6; --muted:#A79FB8; --accent:#B79CFB; --accent-soft:#2A2140; --border:#332A47; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:32px 20px 80px}
+  header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:22px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem}
+  .dot{width:30px;height:30px;border-radius:9px;background:var(--accent);display:grid;place-items:center}
+  .dot span{width:11px;height:11px;border-radius:50%;background:#FDBA74;display:block}
+  h1{font-size:clamp(1.4rem,3vw,1.9rem);margin:0;letter-spacing:-.01em}
+  .tagline{color:var(--muted);font-size:.92rem;margin-top:2px}
+  .toggle{margin-inline-start:auto;display:inline-flex;background:var(--accent-soft);border:1px solid var(--border);border-radius:999px;padding:3px}
+  .toggle button{font:inherit;font-weight:600;font-size:.88rem;border:0;background:transparent;color:var(--muted);padding:7px 16px;border-radius:999px;cursor:pointer;transition:.15s}
+  .toggle button.on{background:var(--accent);color:#fff}
+  .toggle button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  h2{font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:40px 0 4px}
+  .count{font-weight:400;color:var(--muted)}
+  .grid{display:grid;gap:20px;margin-top:16px}
+  .grid.phone{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .grid.web{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(20,10,40,.05)}
+  .card video{width:100%;display:block;background:#0f0f14}
+  .card.phone video{aspect-ratio:9/20;object-fit:cover}
+  .card.web video{aspect-ratio:16/9;object-fit:cover}
+  .cap{padding:11px 14px;display:flex;align-items:center;gap:8px}
+  .idx{font-family:var(--mono);font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .title{font-weight:600;font-size:.92rem}
+  :root[lang="ar"] .title, .title[dir="rtl"]{font-family:var(--ar)}
+  footer{color:var(--muted);font-size:.85rem;margin-top:48px;border-top:1px solid var(--border);padding-top:18px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="dot"><span></span></span>
+    <div>
+      <div class="brand" style="gap:0"><h1>Guide vidéo Orbis</h1></div>
+      <div class="tagline">Application téléphone &amp; web — expliqué simplement. Choisissez la langue :</div>
+    </div>
+    <div class="toggle" role="group" aria-label="Langue">
+      <button id="btn-fr" class="on" type="button">Français</button>
+      <button id="btn-ar" type="button" lang="ar">العربية</button>
+    </div>
+  </header>
+
+  <h2>📱 Application téléphone <span class="count" id="pc"></span></h2>
+  <div class="grid phone" id="phone"></div>
+
+  <h2>💻 Application web <span class="count" id="wc"></span></h2>
+  <div class="grid web" id="web"></div>
+
+  <footer>Orbis · 3B Tech Solutions — 40 vidéos (Français + العربية)</footer>
+</div>
+
+<script>
+const PHONE=[
+  {n:"01",f:"phones/1_connexion_fr.mp4",a:"phones/1_connexion_ar.mp4",tf:"Connexion",ta:"تسجيل الدخول"},
+  {n:"02",f:"phones/2_tableau_de_bord_fr.mp4",a:"phones/2_tableau_de_bord_ar.mp4",tf:"Tableau de bord",ta:"لوحة القيادة"},
+  {n:"03",f:"phones/3_carte_fr.mp4",a:"phones/3_carte_ar.mp4",tf:"Carte",ta:"الخريطة"},
+  {n:"04",f:"phones/4_bons_de_commande_fr.mp4",a:"phones/4_bons_de_commande_ar.mp4",tf:"Bons de commande",ta:"طلبات الشراء"},
+  {n:"05",f:"phones/5_alertes_fr.mp4",a:"phones/5_alertes_ar.mp4",tf:"Alertes",ta:"التنبيهات"},
+  {n:"06",f:"phones/6_mon_profil_fr.mp4",a:"phones/6_mon_profil_ar.mp4",tf:"Mon profil",ta:"الملف الشخصي"}
+];
+const WEB=[
+  {n:"01",f:"web/01_tableau_de_bord_fr.mp4",a:"web/01_tableau_de_bord_ar.mp4",tf:"Tableau de bord",ta:"لوحة القيادة"},
+  {n:"02",f:"web/02_finances_fr.mp4",a:"web/02_finances_ar.mp4",tf:"Finances",ta:"المالية"},
+  {n:"03",f:"web/03_rapports_fr.mp4",a:"web/03_rapports_ar.mp4",tf:"Rapports",ta:"التقارير"},
+  {n:"04",f:"web/04_catalogue_fr.mp4",a:"web/04_catalogue_ar.mp4",tf:"Catalogue",ta:"الكتالوج"},
+  {n:"05",f:"web/05_clients_fr.mp4",a:"web/05_clients_ar.mp4",tf:"Clients & Paiements",ta:"العملاء والمدفوعات"},
+  {n:"06",f:"web/06_commandes_factures_fr.mp4",a:"web/06_commandes_factures_ar.mp4",tf:"Commandes & Facturation",ta:"الطلبات والفوترة"},
+  {n:"07",f:"web/07_promotions_fr.mp4",a:"web/07_promotions_ar.mp4",tf:"Promotions",ta:"العروض"},
+  {n:"08",f:"web/08_pre_vente_fr.mp4",a:"web/08_pre_vente_ar.mp4",tf:"Pré-vente",ta:"البيع المسبق"},
+  {n:"09",f:"web/09_livraison_fr.mp4",a:"web/09_livraison_ar.mp4",tf:"Livraison",ta:"التسليم"},
+  {n:"10",f:"web/10_vente_directe_fr.mp4",a:"web/10_vente_directe_ar.mp4",tf:"Vente directe",ta:"البيع المباشر"},
+  {n:"11",f:"web/11_achats_fr.mp4",a:"web/11_achats_ar.mp4",tf:"Achats",ta:"المشتريات"},
+  {n:"12",f:"web/12_stock_fr.mp4",a:"web/12_stock_ar.mp4",tf:"Stock",ta:"المخزون"},
+  {n:"13",f:"web/13_terrain_fr.mp4",a:"web/13_terrain_ar.mp4",tf:"Terrain",ta:"الميدان"},
+  {n:"14",f:"web/14_administration_fr.mp4",a:"web/14_administration_ar.mp4",tf:"Administration",ta:"الإدارة"}
+];
+let LANG="fr";
+function card(item,kind){
+  const c=document.createElement('div'); c.className='card '+kind;
+  const v=document.createElement('video'); v.controls=true; v.preload='metadata';
+  v.dataset.f=item.f; v.dataset.a=item.a; v.src=item.f;
+  const cap=document.createElement('div'); cap.className='cap';
+  cap.innerHTML=`<span class="idx">${item.n}</span><span class="title"></span>`;
+  const t=cap.querySelector('.title'); t.dataset.tf=item.tf; t.dataset.ta=item.ta; t.textContent=item.tf;
+  c.appendChild(v); c.appendChild(cap); return c;
+}
+const pg=document.getElementById('phone'), wg=document.getElementById('web');
+PHONE.forEach(i=>pg.appendChild(card(i,'phone')));
+WEB.forEach(i=>wg.appendChild(card(i,'web')));
+document.getElementById('pc').textContent='('+PHONE.length+')';
+document.getElementById('wc').textContent='('+WEB.length+')';
+function setLang(l){
+  LANG=l;
+  document.querySelectorAll('video').forEach(v=>{ const s=l==='ar'?v.dataset.a:v.dataset.f; if(!v.src.endsWith(s)){v.pause();v.src=s;v.load();} });
+  document.querySelectorAll('.title').forEach(t=>{ t.textContent=l==='ar'?t.dataset.ta:t.dataset.tf; t.dir=l==='ar'?'rtl':'ltr'; });
+  document.documentElement.lang=l;
+  document.getElementById('btn-fr').classList.toggle('on',l==='fr');
+  document.getElementById('btn-ar').classList.toggle('on',l==='ar');
+}
+document.getElementById('btn-fr').onclick=()=>setLang('fr');
+document.getElementById('btn-ar').onclick=()=>setLang('ar');
+</script>
+</body>
+</html>
