@@ -21,21 +21,22 @@
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1120px;margin:0 auto;padding:32px 20px 80px}
-  header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:22px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem}
-  .dot{width:30px;height:30px;border-radius:9px;background:var(--accent);display:grid;place-items:center}
-  .dot span{width:11px;height:11px;border-radius:50%;background:#FDBA74;display:block}
+  .top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .dot{width:32px;height:32px;border-radius:9px;background:var(--accent);display:grid;place-items:center;flex:none}
+  .dot span{width:12px;height:12px;border-radius:50%;background:#FDBA74;display:block}
   h1{font-size:clamp(1.4rem,3vw,1.9rem);margin:0;letter-spacing:-.01em}
-  .tagline{color:var(--muted);font-size:.92rem;margin-top:2px}
-  .toggle{margin-inline-start:auto;display:inline-flex;background:var(--accent-soft);border:1px solid var(--border);border-radius:999px;padding:3px}
-  .toggle button{font:inherit;font-weight:600;font-size:.88rem;border:0;background:transparent;color:var(--muted);padding:7px 16px;border-radius:999px;cursor:pointer;transition:.15s}
-  .toggle button.on{background:var(--accent);color:#fff}
-  .toggle button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  h2{font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:40px 0 4px}
-  .count{font-weight:400;color:var(--muted)}
+  .tagline{color:var(--muted);font-size:.9rem;margin-top:2px}
+  .controls{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 6px}
+  .seg{display:inline-flex;background:var(--accent-soft);border:1px solid var(--border);border-radius:999px;padding:3px}
+  .seg button{font:inherit;font-weight:600;font-size:.88rem;border:0;background:transparent;color:var(--muted);padding:8px 18px;border-radius:999px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:7px}
+  .seg button.on{background:var(--accent);color:#fff}
+  .seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .seg .lbl-ar{font-family:var(--ar)}
+  h2{font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:34px 0 4px}
+  .count{font-weight:400}
   .grid{display:grid;gap:20px;margin-top:16px}
-  .grid.phone{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
-  .grid.web{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+  .grid.phone{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+  .grid.web{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
   .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(20,10,40,.05)}
   .card video{width:100%;display:block;background:#0f0f14}
   .card.phone video{aspect-ratio:9/20;object-fit:cover}
@@ -43,29 +44,37 @@
   .cap{padding:11px 14px;display:flex;align-items:center;gap:8px}
   .idx{font-family:var(--mono);font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
   .title{font-weight:600;font-size:.92rem}
-  :root[lang="ar"] .title, .title[dir="rtl"]{font-family:var(--ar)}
+  .title[dir="rtl"]{font-family:var(--ar)}
+  .hidden{display:none}
   footer{color:var(--muted);font-size:.85rem;margin-top:48px;border-top:1px solid var(--border);padding-top:18px;text-align:center}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
+  <div class="top">
     <span class="dot"><span></span></span>
-    <div>
-      <div class="brand" style="gap:0"><h1>Guide vidéo Orbis</h1></div>
-      <div class="tagline">Application téléphone &amp; web — expliqué simplement. Choisissez la langue :</div>
-    </div>
-    <div class="toggle" role="group" aria-label="Langue">
-      <button id="btn-fr" class="on" type="button">Français</button>
-      <button id="btn-ar" type="button" lang="ar">العربية</button>
-    </div>
-  </header>
+    <div><h1>Guide vidéo Orbis</h1><div class="tagline">Choisissez l'application et la langue.</div></div>
+  </div>
 
-  <h2>📱 Application téléphone <span class="count" id="pc"></span></h2>
-  <div class="grid phone" id="phone"></div>
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Application">
+      <button id="app-phone" class="on" type="button">📱 Téléphone</button>
+      <button id="app-web" type="button">💻 Web</button>
+    </div>
+    <div class="seg" role="group" aria-label="Langue">
+      <button id="lang-fr" class="on" type="button">Français</button>
+      <button id="lang-ar" type="button"><span class="lbl-ar">العربية</span></button>
+    </div>
+  </div>
 
-  <h2>💻 Application web <span class="count" id="wc"></span></h2>
-  <div class="grid web" id="web"></div>
+  <section id="sec-phone">
+    <h2>📱 Application téléphone <span class="count" id="pc"></span></h2>
+    <div class="grid phone" id="phone"></div>
+  </section>
+  <section id="sec-web" class="hidden">
+    <h2>💻 Application web <span class="count" id="wc"></span></h2>
+    <div class="grid web" id="web"></div>
+  </section>
 
   <footer>Orbis · 3B Tech Solutions — 40 vidéos (Français + العربية)</footer>
 </div>
@@ -98,7 +107,7 @@ const WEB=[
 let LANG="fr";
 function card(item,kind){
   const c=document.createElement('div'); c.className='card '+kind;
-  const v=document.createElement('video'); v.controls=true; v.preload='metadata';
+  const v=document.createElement('video'); v.controls=true; v.preload='metadata'; v.playsInline=true;
   v.dataset.f=item.f; v.dataset.a=item.a; v.src=item.f;
   const cap=document.createElement('div'); cap.className='cap';
   cap.innerHTML=`<span class="idx">${item.n}</span><span class="title"></span>`;
@@ -115,11 +124,20 @@ function setLang(l){
   document.querySelectorAll('video').forEach(v=>{ const s=l==='ar'?v.dataset.a:v.dataset.f; if(!v.src.endsWith(s)){v.pause();v.src=s;v.load();} });
   document.querySelectorAll('.title').forEach(t=>{ t.textContent=l==='ar'?t.dataset.ta:t.dataset.tf; t.dir=l==='ar'?'rtl':'ltr'; });
   document.documentElement.lang=l;
-  document.getElementById('btn-fr').classList.toggle('on',l==='fr');
-  document.getElementById('btn-ar').classList.toggle('on',l==='ar');
+  document.getElementById('lang-fr').classList.toggle('on',l==='fr');
+  document.getElementById('lang-ar').classList.toggle('on',l==='ar');
 }
-document.getElementById('btn-fr').onclick=()=>setLang('fr');
-document.getElementById('btn-ar').onclick=()=>setLang('ar');
+function setApp(a){
+  document.getElementById('sec-phone').classList.toggle('hidden',a!=='phone');
+  document.getElementById('sec-web').classList.toggle('hidden',a!=='web');
+  document.getElementById('app-phone').classList.toggle('on',a==='phone');
+  document.getElementById('app-web').classList.toggle('on',a==='web');
+  document.querySelectorAll(a==='phone'?'#web video':'#phone video').forEach(v=>v.pause());
+}
+document.getElementById('lang-fr').onclick=()=>setLang('fr');
+document.getElementById('lang-ar').onclick=()=>setLang('ar');
+document.getElementById('app-phone').onclick=()=>setApp('phone');
+document.getElementById('app-web').onclick=()=>setApp('web');
 </script>
 </body>
 </html>
