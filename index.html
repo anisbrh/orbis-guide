@@ -105,10 +105,13 @@ const WEB=[
   {n:"14",f:"web/14_administration_fr.mp4",a:"web/14_administration_ar.mp4",tf:"Administration",ta:"الإدارة"}
 ];
 let LANG="fr";
+// Bump this whenever a video is re-rendered: the filenames never change, so without a version
+// the browser keeps replaying the copy it already cached and the update looks like it never shipped.
+const V="?v=20260727b";
 function card(item,kind){
   const c=document.createElement('div'); c.className='card '+kind;
   const v=document.createElement('video'); v.controls=true; v.preload='metadata'; v.playsInline=true;
-  v.dataset.f=item.f; v.dataset.a=item.a; v.src=item.f;
+  v.dataset.f=item.f; v.dataset.a=item.a; v.src=item.f+V;
   const cap=document.createElement('div'); cap.className='cap';
   cap.innerHTML=`<span class="idx">${item.n}</span><span class="title"></span>`;
   const t=cap.querySelector('.title'); t.dataset.tf=item.tf; t.dataset.ta=item.ta; t.textContent=item.tf;
@@ -121,7 +124,7 @@ document.getElementById('pc').textContent='('+PHONE.length+')';
 document.getElementById('wc').textContent='('+WEB.length+')';
 function setLang(l){
   LANG=l;
-  document.querySelectorAll('video').forEach(v=>{ const s=l==='ar'?v.dataset.a:v.dataset.f; if(!v.src.endsWith(s)){v.pause();v.src=s;v.load();} });
+  document.querySelectorAll('video').forEach(v=>{ const s=(l==='ar'?v.dataset.a:v.dataset.f)+V; if(!v.src.endsWith(s)){v.pause();v.src=s;v.load();} });
   document.querySelectorAll('.title').forEach(t=>{ t.textContent=l==='ar'?t.dataset.ta:t.dataset.tf; t.dir=l==='ar'?'rtl':'ltr'; });
   document.documentElement.lang=l;
   document.getElementById('lang-fr').classList.toggle('on',l==='fr');
