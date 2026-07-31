@@ -2,49 +2,54 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Orbis — Guide vidéo</title>
+<title>Orbis — Guide vidéo complet</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   :root{
     --bg:#FAF9FC; --surface:#FFFFFF; --text:#1B1526; --muted:#6B6478;
-    --accent:#6D28D9; --accent-soft:#EDE7FB; --border:#E8E3F1;
+    --accent:#6D28D9; --accent-soft:#EDE7FB; --border:#E8E3F1; --warn:#B45309;
     --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     --sans:ui-sans-serif,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     --ar:"Noto Naskh Arabic","Segoe UI",Tahoma,"Geeza Pro",serif;
   }
   @media (prefers-color-scheme:dark){
     :root{ --bg:#141019; --surface:#1E1929; --text:#ECE8F6; --muted:#A79FB8;
-      --accent:#B79CFB; --accent-soft:#2A2140; --border:#332A47; }
+      --accent:#B79CFB; --accent-soft:#2A2140; --border:#332A47; --warn:#FBBF24; }
   }
-  :root[data-theme="light"]{ --bg:#FAF9FC; --surface:#FFFFFF; --text:#1B1526; --muted:#6B6478; --accent:#6D28D9; --accent-soft:#EDE7FB; --border:#E8E3F1; }
-  :root[data-theme="dark"]{ --bg:#141019; --surface:#1E1929; --text:#ECE8F6; --muted:#A79FB8; --accent:#B79CFB; --accent-soft:#2A2140; --border:#332A47; }
+  :root[data-theme="light"]{ --bg:#FAF9FC; --surface:#FFFFFF; --text:#1B1526; --muted:#6B6478; --accent:#6D28D9; --accent-soft:#EDE7FB; --border:#E8E3F1; --warn:#B45309; }
+  :root[data-theme="dark"]{ --bg:#141019; --surface:#1E1929; --text:#ECE8F6; --muted:#A79FB8; --accent:#B79CFB; --accent-soft:#2A2140; --border:#332A47; --warn:#FBBF24; }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1120px;margin:0 auto;padding:32px 20px 80px}
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 20px 80px}
   .top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
   .dot{width:32px;height:32px;border-radius:9px;background:var(--accent);display:grid;place-items:center;flex:none}
   .dot span{width:12px;height:12px;border-radius:50%;background:#FDBA74;display:block}
   h1{font-size:clamp(1.4rem,3vw,1.9rem);margin:0;letter-spacing:-.01em}
   .tagline{color:var(--muted);font-size:.9rem;margin-top:2px}
-  .controls{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 6px}
+  .controls{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 6px;align-items:center}
   .seg{display:inline-flex;background:var(--accent-soft);border:1px solid var(--border);border-radius:999px;padding:3px}
-  .seg button{font:inherit;font-weight:600;font-size:.88rem;border:0;background:transparent;color:var(--muted);padding:8px 18px;border-radius:999px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:7px}
+  .seg button{font:inherit;font-weight:600;font-size:.88rem;border:0;background:transparent;color:var(--muted);padding:8px 18px;border-radius:999px;cursor:pointer;transition:.15s}
   .seg button.on{background:var(--accent);color:#fff}
   .seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .seg .lbl-ar{font-family:var(--ar)}
+  #search{font:inherit;font-size:.9rem;padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);min-width:230px}
+  #search:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .note{background:var(--accent-soft);border:1px solid var(--border);border-radius:12px;padding:11px 16px;margin:18px 0 0;font-size:.88rem;color:var(--muted)}
+  .note b{color:var(--warn)}
   h2{font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:34px 0 4px}
+  h2[dir="rtl"]{font-family:var(--ar);text-transform:none}
   .count{font-weight:400}
-  .grid{display:grid;gap:20px;margin-top:16px}
-  .grid.phone{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
-  .grid.web{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .grid{display:grid;gap:18px;margin-top:14px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+  .grid.phone{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
   .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(20,10,40,.05)}
-  .card video{width:100%;display:block;background:#0f0f14}
-  .card.phone video{aspect-ratio:9/20;object-fit:cover}
-  .card.web video{aspect-ratio:16/9;object-fit:cover}
+  .card video{width:100%;display:block;background:#0f0f14;aspect-ratio:16/9;object-fit:cover}
+  .card.phone video{aspect-ratio:9/20}
   .cap{padding:11px 14px;display:flex;align-items:center;gap:8px}
   .idx{font-family:var(--mono);font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
   .title{font-weight:600;font-size:.92rem}
   .title[dir="rtl"]{font-family:var(--ar)}
+  .missing{position:relative}
+  .missing::after{content:"العربية bientôt";position:absolute;inset:auto 8px 46px auto;background:var(--accent);color:#fff;font-size:.68rem;padding:3px 8px;border-radius:6px}
   .hidden{display:none}
   footer{color:var(--muted);font-size:.85rem;margin-top:48px;border-top:1px solid var(--border);padding-top:18px;text-align:center}
 </style>
@@ -53,94 +58,134 @@
 <div class="wrap">
   <div class="top">
     <span class="dot"><span></span></span>
-    <div><h1>Guide vidéo Orbis</h1><div class="tagline">Choisissez l'application et la langue.</div></div>
+    <div><h1>Guide vidéo Orbis</h1>
+      <div class="tagline">Chaque page de l'application, chaque bouton expliqué.</div></div>
   </div>
 
   <div class="controls">
-    <div class="seg" role="group" aria-label="Application">
-      <button id="app-phone" class="on" type="button">📱 Téléphone</button>
-      <button id="app-web" type="button">💻 Web</button>
+    <div class="seg" role="group" aria-label="Guide">
+      <button id="app-shorts" class="on" type="button">💻 Web — 50 shorts</button>
+      <button id="app-phone" type="button">📱 Téléphone</button>
+      <button id="app-old" type="button">📦 Ancien guide</button>
     </div>
     <div class="seg" role="group" aria-label="Langue">
       <button id="lang-fr" class="on" type="button">Français</button>
       <button id="lang-ar" type="button"><span class="lbl-ar">العربية</span></button>
     </div>
+    <input id="search" type="search" placeholder="Chercher une page…" aria-label="Chercher">
   </div>
 
-  <section id="sec-phone">
+  <div class="note" id="arnote">La version <b>arabe</b> des 50 shorts est en cours
+  d'enregistrement. Les vidéos françaises sont disponibles dès maintenant.</div>
+
+  <section id="sec-shorts"></section>
+  <section id="sec-phone" class="hidden">
     <h2>📱 Application téléphone <span class="count" id="pc"></span></h2>
     <div class="grid phone" id="phone"></div>
   </section>
-  <section id="sec-web" class="hidden">
-    <h2>💻 Application web <span class="count" id="wc"></span></h2>
-    <div class="grid web" id="web"></div>
+  <section id="sec-old" class="hidden">
+    <h2>📦 Ancien guide par module <span class="count" id="oc"></span></h2>
+    <p class="note">Le guide précédent, regroupé en 14 modules. Il est conservé le temps que la
+    version arabe des 50 shorts soit enregistrée — les shorts le remplacent entièrement.</p>
+    <div class="grid" id="old"></div>
   </section>
 
-  <footer>Orbis · 3B Tech Solutions — 40 vidéos (Français + العربية)</footer>
+  <footer>Orbis · 3B Tech Solutions — 50 shorts web + 6 vidéos téléphone</footer>
 </div>
 
 <script>
-const PHONE=[
-  {n:"01",f:"phones/1_connexion_fr.mp4",a:"phones/1_connexion_ar.mp4",tf:"Connexion",ta:"تسجيل الدخول"},
-  {n:"02",f:"phones/2_tableau_de_bord_fr.mp4",a:"phones/2_tableau_de_bord_ar.mp4",tf:"Tableau de bord",ta:"لوحة القيادة"},
-  {n:"03",f:"phones/3_carte_fr.mp4",a:"phones/3_carte_ar.mp4",tf:"Carte",ta:"الخريطة"},
-  {n:"04",f:"phones/4_bons_de_commande_fr.mp4",a:"phones/4_bons_de_commande_ar.mp4",tf:"Bons de commande",ta:"طلبات الشراء"},
-  {n:"05",f:"phones/5_alertes_fr.mp4",a:"phones/5_alertes_ar.mp4",tf:"Alertes",ta:"التنبيهات"},
-  {n:"06",f:"phones/6_mon_profil_fr.mp4",a:"phones/6_mon_profil_ar.mp4",tf:"Mon profil",ta:"الملف الشخصي"}
-];
-const WEB=[
-  {n:"01",f:"web/01_tableau_de_bord_fr.mp4",a:"web/01_tableau_de_bord_ar.mp4",tf:"Tableau de bord",ta:"لوحة القيادة"},
-  {n:"02",f:"web/02_finances_fr.mp4",a:"web/02_finances_ar.mp4",tf:"Finances",ta:"المالية"},
-  {n:"03",f:"web/03_rapports_fr.mp4",a:"web/03_rapports_ar.mp4",tf:"Rapports",ta:"التقارير"},
-  {n:"04",f:"web/04_catalogue_fr.mp4",a:"web/04_catalogue_ar.mp4",tf:"Catalogue",ta:"الكتالوج"},
-  {n:"05",f:"web/05_clients_fr.mp4",a:"web/05_clients_ar.mp4",tf:"Clients & Paiements",ta:"العملاء والمدفوعات"},
-  {n:"06",f:"web/06_commandes_factures_fr.mp4",a:"web/06_commandes_factures_ar.mp4",tf:"Commandes & Facturation",ta:"الطلبات والفوترة"},
-  {n:"07",f:"web/07_promotions_fr.mp4",a:"web/07_promotions_ar.mp4",tf:"Promotions",ta:"العروض"},
-  {n:"08",f:"web/08_pre_vente_fr.mp4",a:"web/08_pre_vente_ar.mp4",tf:"Pré-vente",ta:"البيع المسبق"},
-  {n:"09",f:"web/09_livraison_fr.mp4",a:"web/09_livraison_ar.mp4",tf:"Livraison",ta:"التسليم"},
-  {n:"10",f:"web/10_vente_directe_fr.mp4",a:"web/10_vente_directe_ar.mp4",tf:"Vente directe",ta:"البيع المباشر"},
-  {n:"11",f:"web/11_achats_fr.mp4",a:"web/11_achats_ar.mp4",tf:"Achats",ta:"المشتريات"},
-  {n:"12",f:"web/12_stock_fr.mp4",a:"web/12_stock_ar.mp4",tf:"Stock",ta:"المخزون"},
-  {n:"13",f:"web/13_terrain_fr.mp4",a:"web/13_terrain_ar.mp4",tf:"Terrain",ta:"الميدان"},
-  {n:"14",f:"web/14_administration_fr.mp4",a:"web/14_administration_ar.mp4",tf:"Administration",ta:"الإدارة"}
-];
-let LANG="fr";
-// Bump this whenever a video is re-rendered: the filenames never change, so without a version
-// the browser keeps replaying the copy it already cached and the update looks like it never shipped.
-const V="?v=20260727b";
-function card(item,kind){
+const FAM=[{f:"Accès",a:"الدخول",items:[{id:"00_connexion",n:"00",tf:"Se connecter à Orbis",ta:"تسجيل الدخول"},{id:"01_navigation",n:"01",tf:"Le menu et la barre du haut",ta:"القائمة والشريط العلوي"}]},
+{f:"Pilotage",a:"القيادة",items:[{id:"02_tableau_de_bord",n:"02",tf:"Tableau de bord",ta:"لوحة القيادة"},{id:"03_finances",n:"03",tf:"Finances",ta:"المالية"},{id:"04_charges",n:"04",tf:"Charges",ta:"الأعباء"},{id:"05_rapports",n:"05",tf:"Rapports",ta:"التقارير"}]},
+{f:"Catalogue",a:"الكتالوج",items:[{id:"06_produits",n:"06",tf:"Produits — chaque bouton",ta:"المنتجات"},{id:"07_categories",n:"07",tf:"Catégories",ta:"الفئات"},{id:"08_marques",n:"08",tf:"Marques",ta:"العلامات"},{id:"09_tarifs",n:"09",tf:"Tarifs",ta:"التسعيرات"}]},
+{f:"Commercial",a:"التجاري",items:[{id:"10_clients",n:"10",tf:"Clients — chaque bouton",ta:"العملاء"},{id:"11_paiements_en_attente",n:"11",tf:"Paiements en attente",ta:"المدفوعات المعلقة"},{id:"12_promotions",n:"12",tf:"Promotions",ta:"العروض"},{id:"13_commandes",n:"13",tf:"Commandes — chaque bouton",ta:"الطلبات"},{id:"14_reliquats",n:"14",tf:"Reliquats",ta:"المتبقيات"},{id:"15_factures",n:"15",tf:"Factures",ta:"الفواتير"},{id:"16_avoirs",n:"16",tf:"Avoirs",ta:"الإشعارات الدائنة"}]},
+{f:"Pré-vente",a:"البيع المسبق",items:[{id:"17_prevente_planification",n:"17",tf:"Pré-vente — Planification",ta:"تخطيط البيع المسبق"},{id:"18_prevente_today",n:"18",tf:"Pré-vente — Tournées du jour",ta:"جولات اليوم — بيع مسبق"}]},
+{f:"Livraison",a:"التسليم",items:[{id:"19_livraison_planning",n:"19",tf:"Livraison — Planning du jour",ta:"تخطيط التسليم"},{id:"20_livraison_today",n:"20",tf:"Livraison — Tournées du jour",ta:"جولات اليوم — تسليم"},{id:"21_livraison_tournees",n:"21",tf:"Livraison — Tournées",ta:"الجولات"},{id:"22_bons_de_livraison",n:"22",tf:"Bons de livraison",ta:"سندات التسليم"}]},
+{f:"Vente directe",a:"البيع المباشر",items:[{id:"23_vd_today",n:"23",tf:"Vente directe — Tournées du jour",ta:"جولات اليوم — بيع مباشر"},{id:"24_vd_planning",n:"24",tf:"Vente directe — Planning journalier",ta:"التخطيط اليومي — بيع مباشر"},{id:"25_vehicules",n:"25",tf:"Véhicules",ta:"المركبات"},{id:"26_chargements",n:"26",tf:"Chargements",ta:"التحميلات"},{id:"27_modeles_chargement",n:"27",tf:"Modèles de chargement",ta:"نماذج التحميل"},{id:"28_bl_a_transporter",n:"28",tf:"BL à transporter",ta:"سندات للنقل"},{id:"29_retours_vehicules",n:"29",tf:"Retours véhicules",ta:"مرتجعات المركبات"}]},
+{f:"Achats",a:"المشتريات",items:[{id:"30_fournisseurs",n:"30",tf:"Fournisseurs",ta:"الموردون"},{id:"31_factures_fournisseur",n:"31",tf:"Factures fournisseur",ta:"فواتير الموردين"},{id:"32_retours_fournisseur",n:"32",tf:"Retours fournisseur",ta:"مرتجعات الموردين"}]},
+{f:"Stock",a:"المخزون",items:[{id:"33_situation_stock",n:"33",tf:"Situation stock",ta:"وضعية المخزون"},{id:"34_stock_bas",n:"34",tf:"Stock bas",ta:"المخزون المنخفض"},{id:"35_lots_a_expirer",n:"35",tf:"Lots à expirer",ta:"دفعات ستنتهي"}]},
+{f:"Terrain",a:"الميدان",items:[{id:"36_wilayas",n:"36",tf:"Wilayas",ta:"الولايات"},{id:"37_secteurs",n:"37",tf:"Secteurs",ta:"القطاعات"},{id:"38_routes",n:"38",tf:"Routes",ta:"المسارات"},{id:"39_suivi_en_direct",n:"39",tf:"Suivi en direct",ta:"المتابعة المباشرة"}]},
+{f:"Administration",a:"الإدارة",items:[{id:"40_utilisateurs",n:"40",tf:"Utilisateurs — créer un compte",ta:"المستخدمون"},{id:"41_objectifs",n:"41",tf:"Objectifs",ta:"الأهداف"},{id:"42_synchronisation",n:"42",tf:"Synchronisation",ta:"المزامنة"},{id:"43_parametres",n:"43",tf:"Paramètres — les règles du jeu",ta:"الإعدادات"},{id:"44_motifs_non_achat",n:"44",tf:"Motifs de non-achat",ta:"أسباب عدم الشراء"},{id:"45_motifs_echec_livraison",n:"45",tf:"Motifs d'échec de livraison",ta:"أسباب فشل التسليم"},{id:"46_assistance",n:"46",tf:"Assistance",ta:"المساعدة"}]},
+{f:"Rôles & comptes",a:"الأدوار والحسابات",items:[{id:"47_roles_permissions",n:"47",tf:"Rôles & permissions",ta:"الأدوار والصلاحيات"},{id:"48_compte_prevendeur",n:"48",tf:"Le compte Pré-vendeur",ta:"حساب البائع المسبق"},{id:"49_compte_livreur",n:"49",tf:"Le compte Livreur",ta:"حساب الموصّل"}]}];
+const PHONE=[{n:"01",b:"1_connexion",tf:"Connexion",ta:"تسجيل الدخول"},{n:"02",b:"2_tableau_de_bord",tf:"Tableau de bord",ta:"لوحة القيادة"},{n:"03",b:"3_carte",tf:"Carte",ta:"الخريطة"},{n:"04",b:"4_bons_de_commande",tf:"Bons de commande",ta:"طلبات الشراء"},{n:"05",b:"5_alertes",tf:"Alertes",ta:"التنبيهات"},{n:"06",b:"6_mon_profil",tf:"Mon profil",ta:"الملف الشخصي"}];
+const OLD=[{n:"01",b:"01_tableau_de_bord",tf:"Tableau de bord",ta:"Tableau de bord"},{n:"02",b:"02_finances",tf:"Finances",ta:"Finances"},{n:"03",b:"03_rapports",tf:"Rapports",ta:"Rapports"},{n:"04",b:"04_catalogue",tf:"Catalogue",ta:"Catalogue"},{n:"05",b:"05_clients",tf:"Clients",ta:"Clients"},{n:"06",b:"06_commandes_factures",tf:"Commandes factures",ta:"Commandes factures"},{n:"07",b:"07_promotions",tf:"Promotions",ta:"Promotions"},{n:"08",b:"08_pre_vente",tf:"Pre vente",ta:"Pre vente"},{n:"09",b:"09_livraison",tf:"Livraison",ta:"Livraison"},{n:"10",b:"10_vente_directe",tf:"Vente directe",ta:"Vente directe"},{n:"11",b:"11_achats",tf:"Achats",ta:"Achats"},{n:"12",b:"12_stock",tf:"Stock",ta:"Stock"},{n:"13",b:"13_terrain",tf:"Terrain",ta:"Terrain"},{n:"14",b:"14_administration",tf:"Administration",ta:"Administration"}];
+// Bump on every re-render: the filenames never change, so without a version the browser keeps
+// replaying the copy it already cached and the update looks like it never shipped.
+const V="?v=20260731";
+const HAS_AR=new Set([]);
+let LANG="fr", APP="shorts";
+
+function card(item,kind,dir){
   const c=document.createElement('div'); c.className='card '+kind;
+  c.dataset.search=(item.tf+' '+item.ta+' '+(item.id||item.b)).toLowerCase();
   const v=document.createElement('video'); v.controls=true; v.preload='metadata'; v.playsInline=true;
-  v.dataset.f=item.f; v.dataset.a=item.a; v.src=item.f+V;
+  v.dataset.base=dir+'/'+(item.id||item.b);
+  v.src=v.dataset.base+'_fr.mp4'+V;
   const cap=document.createElement('div'); cap.className='cap';
-  cap.innerHTML=`<span class="idx">${item.n}</span><span class="title"></span>`;
+  cap.innerHTML='<span class="idx">'+item.n+'</span><span class="title"></span>';
   const t=cap.querySelector('.title'); t.dataset.tf=item.tf; t.dataset.ta=item.ta; t.textContent=item.tf;
   c.appendChild(v); c.appendChild(cap); return c;
 }
-const pg=document.getElementById('phone'), wg=document.getElementById('web');
-PHONE.forEach(i=>pg.appendChild(card(i,'phone')));
-WEB.forEach(i=>wg.appendChild(card(i,'web')));
+const sec=document.getElementById('sec-shorts');
+FAM.forEach(f=>{
+  const h=document.createElement('h2'); h.dataset.tf=f.f; h.dataset.ta=f.a;
+  h.innerHTML=f.f+' <span class="count">('+f.items.length+')</span>';
+  const g=document.createElement('div'); g.className='grid';
+  f.items.forEach(i=>g.appendChild(card(i,'short','shorts')));
+  sec.appendChild(h); sec.appendChild(g);
+});
+const pg=document.getElementById('phone');
+PHONE.forEach(i=>pg.appendChild(card(i,'phone','phones')));
 document.getElementById('pc').textContent='('+PHONE.length+')';
-document.getElementById('wc').textContent='('+WEB.length+')';
+const og=document.getElementById('old');
+OLD.forEach(i=>og.appendChild(card(i,'short','web')));
+document.getElementById('oc').textContent='('+OLD.length+')';
+
 function setLang(l){
   LANG=l;
-  document.querySelectorAll('video').forEach(v=>{ const s=(l==='ar'?v.dataset.a:v.dataset.f)+V; if(!v.src.endsWith(s)){v.pause();v.src=s;v.load();} });
-  document.querySelectorAll('.title').forEach(t=>{ t.textContent=l==='ar'?t.dataset.ta:t.dataset.tf; t.dir=l==='ar'?'rtl':'ltr'; });
+  document.querySelectorAll('video').forEach(v=>{
+    const id=v.dataset.base.split('/')[1];
+    // phone and the old module guide already have their Arabic; the shorts only do once recorded
+    const useAr = l==='ar' && (v.dataset.base.startsWith('phones/')
+                            || v.dataset.base.startsWith('web/') || HAS_AR.has(id));
+    const s=v.dataset.base+(useAr?'_ar':'_fr')+'.mp4'+V;
+    v.parentElement.classList.toggle('missing', l==='ar' && !useAr);
+    if(!v.src.endsWith(s)){ v.pause(); v.src=s; v.load(); }
+  });
+  document.querySelectorAll('.title,h2[data-tf]').forEach(t=>{
+    const txt=(l==='ar'?t.dataset.ta:t.dataset.tf);
+    if(t.tagName==='H2'){ const c=t.querySelector('.count'); t.textContent=txt+' '; if(c)t.appendChild(c); }
+    else t.textContent=txt;
+    t.dir=l==='ar'?'rtl':'ltr';
+  });
   document.documentElement.lang=l;
   document.getElementById('lang-fr').classList.toggle('on',l==='fr');
   document.getElementById('lang-ar').classList.toggle('on',l==='ar');
+  document.getElementById('arnote').classList.toggle('hidden', HAS_AR.size>=50);
 }
 function setApp(a){
-  document.getElementById('sec-phone').classList.toggle('hidden',a!=='phone');
-  document.getElementById('sec-web').classList.toggle('hidden',a!=='web');
-  document.getElementById('app-phone').classList.toggle('on',a==='phone');
-  document.getElementById('app-web').classList.toggle('on',a==='web');
-  document.querySelectorAll(a==='phone'?'#web video':'#phone video').forEach(v=>v.pause());
+  APP=a;
+  ['shorts','phone','old'].forEach(k=>{
+    document.getElementById('sec-'+k).classList.toggle('hidden',a!==k);
+    document.getElementById('app-'+k).classList.toggle('on',a===k);
+    if(a!==k) document.querySelectorAll('#sec-'+k+' video').forEach(v=>v.pause());
+  });
+  document.getElementById('arnote').classList.toggle('hidden', a!=='shorts' || HAS_AR.size>=50);
 }
+document.getElementById('search').addEventListener('input',e=>{
+  const q=e.target.value.trim().toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>
+    c.classList.toggle('hidden', q && !c.dataset.search.includes(q)));
+  document.querySelectorAll('#sec-shorts h2').forEach(h=>{
+    const g=h.nextElementSibling;
+    h.classList.toggle('hidden', [...g.children].every(c=>c.classList.contains('hidden')));
+  });
+});
 document.getElementById('lang-fr').onclick=()=>setLang('fr');
 document.getElementById('lang-ar').onclick=()=>setLang('ar');
+document.getElementById('app-shorts').onclick=()=>setApp('shorts');
 document.getElementById('app-phone').onclick=()=>setApp('phone');
-document.getElementById('app-web').onclick=()=>setApp('web');
+document.getElementById('app-old').onclick=()=>setApp('old');
+setLang('fr');
 </script>
 </body>
 </html>
