@@ -64,7 +64,7 @@
 
   <div class="controls">
     <div class="seg" role="group" aria-label="Guide">
-      <button id="app-shorts" class="on" type="button">💻 Web — 50 shorts</button>
+      <button id="app-shorts" class="on" type="button">💻 Web — 56 shorts</button>
       <button id="app-phone" type="button">📱 Téléphone</button>
       <button id="app-old" type="button">📦 Ancien guide</button>
     </div>
@@ -75,7 +75,7 @@
     <input id="search" type="search" placeholder="Chercher une page…" aria-label="Chercher">
   </div>
 
-  <div class="note" id="arnote">La version <b>arabe</b> des 50 shorts est en cours
+  <div class="note" id="arnote">La version <b>arabe</b> des 56 shorts est en cours
   d'enregistrement. Les vidéos françaises sont disponibles dès maintenant.</div>
 
   <section id="sec-shorts"></section>
@@ -86,17 +86,17 @@
   <section id="sec-old" class="hidden">
     <h2>📦 Ancien guide par module <span class="count" id="oc"></span></h2>
     <p class="note">Le guide précédent, regroupé en 14 modules. Il est conservé le temps que la
-    version arabe des 50 shorts soit enregistrée — les shorts le remplacent entièrement.</p>
+    version arabe des 56 shorts soit enregistrée — les shorts le remplacent entièrement.</p>
     <div class="grid" id="old"></div>
   </section>
 
-  <footer>Orbis · 3B Tech Solutions — 50 shorts web + 6 vidéos téléphone</footer>
+  <footer>Orbis · 3B Tech Solutions — 56 shorts web + 6 vidéos téléphone</footer>
 </div>
 
 <script>
 const FAM=[{f:"Accès",a:"الدخول",items:[{id:"00_connexion",n:"00",tf:"Se connecter à Orbis",ta:"تسجيل الدخول"},{id:"01_navigation",n:"01",tf:"Le menu et la barre du haut",ta:"القائمة والشريط العلوي"}]},
-{f:"Pilotage",a:"القيادة",items:[{id:"02_tableau_de_bord",n:"02",tf:"Tableau de bord",ta:"لوحة القيادة"},{id:"03_finances",n:"03",tf:"Finances",ta:"المالية"},{id:"04_charges",n:"04",tf:"Charges",ta:"الأعباء"},{id:"05_rapports",n:"05",tf:"Rapports",ta:"التقارير"}]},
-{f:"Catalogue",a:"الكتالوج",items:[{id:"06_produits",n:"06",tf:"Produits — chaque bouton",ta:"المنتجات"},{id:"07_categories",n:"07",tf:"Catégories",ta:"الفئات"},{id:"08_marques",n:"08",tf:"Marques",ta:"العلامات"},{id:"09_tarifs",n:"09",tf:"Tarifs",ta:"التسعيرات"}]},
+{f:"Pilotage",a:"القيادة",items:[{id:"02_tableau_de_bord",n:"02",tf:"Tableau de bord",ta:"لوحة القيادة"},{id:"03_finances",n:"03",tf:"Finances",ta:"المالية"},{id:"04_charges",n:"04",tf:"Charges",ta:"الأعباء"},{id:"05_rapports",n:"05",tf:"Rapports — les six onglets",ta:"التقارير"}]},
+{f:"Catalogue",a:"الكتالوج",items:[{id:"06_produits",n:"06",tf:"Produits — la liste, le formulaire, l'import",ta:"المنتجات"},{id:"06b_fiche_produit",n:"06b",tf:"La fiche produit — conditionnements, marge, stock",ta:"بطاقة المنتج"},{id:"07_categories",n:"07",tf:"Catégories",ta:"الفئات"},{id:"08_marques",n:"08",tf:"Marques",ta:"العلامات"},{id:"09_tarifs",n:"09",tf:"Tarifs",ta:"التسعيرات"}]},
 {f:"Commercial",a:"التجاري",items:[{id:"10_clients",n:"10",tf:"Clients — chaque bouton",ta:"العملاء"},{id:"11_paiements_en_attente",n:"11",tf:"Paiements en attente",ta:"المدفوعات المعلقة"},{id:"12_promotions",n:"12",tf:"Promotions",ta:"العروض"},{id:"13_commandes",n:"13",tf:"Commandes — chaque bouton",ta:"الطلبات"},{id:"14_reliquats",n:"14",tf:"Reliquats",ta:"المتبقيات"},{id:"15_factures",n:"15",tf:"Factures",ta:"الفواتير"},{id:"16_avoirs",n:"16",tf:"Avoirs",ta:"الإشعارات الدائنة"}]},
 {f:"Pré-vente",a:"البيع المسبق",items:[{id:"17_prevente_planification",n:"17",tf:"Pré-vente — Planification",ta:"تخطيط البيع المسبق"},{id:"18_prevente_today",n:"18",tf:"Pré-vente — Tournées du jour",ta:"جولات اليوم — بيع مسبق"}]},
 {f:"Livraison",a:"التسليم",items:[{id:"19_livraison_planning",n:"19",tf:"Livraison — Planning du jour",ta:"تخطيط التسليم"},{id:"20_livraison_today",n:"20",tf:"Livraison — Tournées du jour",ta:"جولات اليوم — تسليم"},{id:"21_livraison_tournees",n:"21",tf:"Livraison — Tournées",ta:"الجولات"},{id:"22_bons_de_livraison",n:"22",tf:"Bons de livraison",ta:"سندات التسليم"}]},
@@ -105,7 +105,7 @@ const FAM=[{f:"Accès",a:"الدخول",items:[{id:"00_connexion",n:"00",tf:"Se 
 {f:"Stock",a:"المخزون",items:[{id:"33_situation_stock",n:"33",tf:"Situation stock",ta:"وضعية المخزون"},{id:"34_stock_bas",n:"34",tf:"Stock bas",ta:"المخزون المنخفض"},{id:"35_lots_a_expirer",n:"35",tf:"Lots à expirer",ta:"دفعات ستنتهي"}]},
 {f:"Terrain",a:"الميدان",items:[{id:"36_wilayas",n:"36",tf:"Wilayas",ta:"الولايات"},{id:"37_secteurs",n:"37",tf:"Secteurs",ta:"القطاعات"},{id:"38_routes",n:"38",tf:"Routes",ta:"المسارات"},{id:"39_suivi_en_direct",n:"39",tf:"Suivi en direct",ta:"المتابعة المباشرة"}]},
 {f:"Administration",a:"الإدارة",items:[{id:"40_utilisateurs",n:"40",tf:"Utilisateurs — créer un compte",ta:"المستخدمون"},{id:"41_objectifs",n:"41",tf:"Objectifs",ta:"الأهداف"},{id:"42_synchronisation",n:"42",tf:"Synchronisation",ta:"المزامنة"},{id:"43_parametres",n:"43",tf:"Paramètres — les règles du jeu",ta:"الإعدادات"},{id:"44_motifs_non_achat",n:"44",tf:"Motifs de non-achat",ta:"أسباب عدم الشراء"},{id:"45_motifs_echec_livraison",n:"45",tf:"Motifs d'échec de livraison",ta:"أسباب فشل التسليم"},{id:"46_assistance",n:"46",tf:"Assistance",ta:"المساعدة"}]},
-{f:"Rôles & comptes",a:"الأدوار والحسابات",items:[{id:"47_roles_permissions",n:"47",tf:"Rôles & permissions",ta:"الأدوار والصلاحيات"},{id:"48_compte_prevendeur",n:"48",tf:"Le compte Pré-vendeur",ta:"حساب البائع المسبق"},{id:"49_compte_livreur",n:"49",tf:"Le compte Livreur",ta:"حساب الموصّل"}]}];
+{f:"Rôles & comptes",a:"الأدوار والحسابات",items:[{id:"47_roles_permissions",n:"47",tf:"Rôles & permissions",ta:"الأدوار والصلاحيات"},{id:"48_compte_prevendeur",n:"48",tf:"Le compte Pré-vendeur",ta:"حساب البائع المسبق"},{id:"49_compte_livreur",n:"49",tf:"Le compte Livreur",ta:"حساب الموصّل"},{id:"50_role_vendeur",n:"50",tf:"Le rôle Vendeur — vente directe",ta:"دور البائع المباشر"},{id:"51_role_superviseur",n:"51",tf:"Le rôle Superviseur",ta:"دور المشرف"},{id:"52_role_responsable",n:"52",tf:"Le rôle Responsable (Manager)",ta:"دور المسؤول"},{id:"53_role_basic",n:"53",tf:"Le rôle Basic",ta:"الدور الأساسي"},{id:"54_attribuer_un_role",n:"54",tf:"Attribuer un rôle à un utilisateur",ta:"إسناد دور لمستخدم"}]}];
 const PHONE=[{n:"01",b:"1_connexion",tf:"Connexion",ta:"تسجيل الدخول"},{n:"02",b:"2_tableau_de_bord",tf:"Tableau de bord",ta:"لوحة القيادة"},{n:"03",b:"3_carte",tf:"Carte",ta:"الخريطة"},{n:"04",b:"4_bons_de_commande",tf:"Bons de commande",ta:"طلبات الشراء"},{n:"05",b:"5_alertes",tf:"Alertes",ta:"التنبيهات"},{n:"06",b:"6_mon_profil",tf:"Mon profil",ta:"الملف الشخصي"}];
 const OLD=[{n:"01",b:"01_tableau_de_bord",tf:"Tableau de bord",ta:"Tableau de bord"},{n:"02",b:"02_finances",tf:"Finances",ta:"Finances"},{n:"03",b:"03_rapports",tf:"Rapports",ta:"Rapports"},{n:"04",b:"04_catalogue",tf:"Catalogue",ta:"Catalogue"},{n:"05",b:"05_clients",tf:"Clients",ta:"Clients"},{n:"06",b:"06_commandes_factures",tf:"Commandes factures",ta:"Commandes factures"},{n:"07",b:"07_promotions",tf:"Promotions",ta:"Promotions"},{n:"08",b:"08_pre_vente",tf:"Pre vente",ta:"Pre vente"},{n:"09",b:"09_livraison",tf:"Livraison",ta:"Livraison"},{n:"10",b:"10_vente_directe",tf:"Vente directe",ta:"Vente directe"},{n:"11",b:"11_achats",tf:"Achats",ta:"Achats"},{n:"12",b:"12_stock",tf:"Stock",ta:"Stock"},{n:"13",b:"13_terrain",tf:"Terrain",ta:"Terrain"},{n:"14",b:"14_administration",tf:"Administration",ta:"Administration"}];
 // Bump on every re-render: the filenames never change, so without a version the browser keeps
@@ -160,7 +160,7 @@ function setLang(l){
   document.documentElement.lang=l;
   document.getElementById('lang-fr').classList.toggle('on',l==='fr');
   document.getElementById('lang-ar').classList.toggle('on',l==='ar');
-  document.getElementById('arnote').classList.toggle('hidden', HAS_AR.size>=50);
+  document.getElementById('arnote').classList.toggle('hidden', HAS_AR.size>=56);
 }
 function setApp(a){
   APP=a;
@@ -169,7 +169,7 @@ function setApp(a){
     document.getElementById('app-'+k).classList.toggle('on',a===k);
     if(a!==k) document.querySelectorAll('#sec-'+k+' video').forEach(v=>v.pause());
   });
-  document.getElementById('arnote').classList.toggle('hidden', a!=='shorts' || HAS_AR.size>=50);
+  document.getElementById('arnote').classList.toggle('hidden', a!=='shorts' || HAS_AR.size>=56);
 }
 document.getElementById('search').addEventListener('input',e=>{
   const q=e.target.value.trim().toLowerCase();
